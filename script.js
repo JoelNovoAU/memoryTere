@@ -3,6 +3,7 @@ $(document).ready(function () {
     let secuenciaUsuario = [];
     let colores = ["celda1", "celda2", "celda3", "celda4"];
     let enJuego = false;
+    let nivel=0
 
     function parpadear(celda) {
         $(`.${celda}`).addClass("active");
@@ -44,21 +45,22 @@ $(document).ready(function () {
         let index = secuenciaUsuario.length - 1;
         if (secuenciaUsuario[index] !== secuenciaJuego[index]) {
             alert("¡ Has Perdido !" );
+            location.reload()
             reiniciarJuego();
             return;
         }
         if (secuenciaUsuario.length === secuenciaJuego.length) {
+            nivel++
+            actualizarNivel()
             setTimeout(nuevaSecuencia, 1000);
         }
     }
-
-    function reiniciarJuego() {
-        secuenciaJuego = [];
-        enJuego = false;
+    function actualizarNivel() {
+        $("#nivel").text("NIVEL " + nivel);
     }
+   
 
     $("#empezar").click(function () {
-        reiniciarJuego();
         nuevaSecuencia();
     });
 });
