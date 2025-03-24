@@ -1,64 +1,64 @@
 $(document).ready(function () {
-    let secuenciaJuego = [];
-    let secuenciaUsuario = [];
-    let colores = ["celda1", "celda2", "celda3", "celda4"];
-    let enJuego = false;
-    let golesLocal = 0;  
-    let golesVisitante = 0;  
-    let tiempo = 0;  
-    let sonidoActivo = false;  
-    let cronometro;  
+    let secuenciaJuego = []
+    let secuenciaUsuario = []
+    let colores = ["celda1", "celda2", "celda3", "celda4"]
+    let enJuego = false
+    let golesLocal = 0  
+    let golesVisitante = 0  
+    let tiempo = 0  
+    let sonidoActivo = false  
+    let cronometro  
 
-
+    
 
     function parpadear(celda) {
-        $(`.${celda}`).addClass("active");
+        $(`.${celda}`).addClass("active")
         setTimeout(() => {
-            $(`.${celda}`).removeClass("active");
-        }, 400);
+            $(`.${celda}`).removeClass("active")
+        }, 400)
     }
 
     function nuevaSecuencia() {
-        secuenciaUsuario = [];
-        let colorAleatorio = colores[Math.floor(Math.random() * colores.length)];
-        secuenciaJuego.push(colorAleatorio);
-        mostrarSecuencia();
+        secuenciaUsuario = []
+        let colorAleatorio = colores[Math.floor(Math.random() * colores.length)]
+        secuenciaJuego.push(colorAleatorio)
+        mostrarSecuencia()
     }
 
     function mostrarSecuencia() {
-        let i = 0;
-        enJuego = false;
+        let i = 0
+        enJuego = false
         let intervalo = setInterval(function () {
             if (i >= secuenciaJuego.length) {
-                clearInterval(intervalo);
-                enJuego = true;
-                return;
+                clearInterval(intervalo)
+                enJuego = true
+                return
             }
-            parpadear(secuenciaJuego[i]);
-            i++;
-        }, 600);
+            parpadear(secuenciaJuego[i])
+            i++
+        }, 600)
     }
 
     $(".celda").click(function () {
-        if (!enJuego) return;
-        let celdaSeleccionada = $(this).attr("class").split(" ")[1];
-        secuenciaUsuario.push(celdaSeleccionada);
-        parpadear(celdaSeleccionada);
-        verificarSecuencia();
-    });
+        if (!enJuego) return
+        let celdaSeleccionada = $(this).attr("class").split(" ")[1]
+        secuenciaUsuario.push(celdaSeleccionada)
+        parpadear(celdaSeleccionada)
+        verificarSecuencia()
+    })
 
     function verificarSecuencia() {
-        let index = secuenciaUsuario.length - 1;
+        let index = secuenciaUsuario.length - 1
         if (secuenciaUsuario[index] !== secuenciaJuego[index]) {
-            mostrarMensajeRoja();
-            return;
+            mostrarMensajeRoja()
+            return
         }
         if (secuenciaUsuario.length === secuenciaJuego.length) {
-            golesLocal++;
-            $("#goles-local").text(golesLocal); 
-            let acierto = new Audio('spectators-really-enjoy-the-goal (mp3cut.net).mp3');
-            acierto.play();
-            setTimeout(nuevaSecuencia, 1500);
+            golesLocal++
+            $("#goles-local").text(golesLocal)
+            let acierto = new Audio('spectators-really-enjoy-the-goal (mp3cut.net).mp3')
+            acierto.play()
+            setTimeout(nuevaSecuencia, 1500)
         }
     }
 
@@ -77,66 +77,68 @@ $(document).ready(function () {
         enJuego = false;
         clearInterval(cronometro);
         reproducirSonido('metal-whistle-6121 (mp3cut.net).mp3');
-        $("#modalRoja").show();
+        $("#modalRoja").show()
         $("#reiniciarRoja").click(function () {
-            location.reload();
+            location.reload()
         });
     }
 
     function mostrarMensajeVictoria() {
         enJuego = false;
-        clearInterval(cronometro); 
+        clearInterval(cronometro);
         reproducirSonido('metal-whistle-6121 (mp3cut.net).mp3');
-        $("#modalVictoria").show();
+        $("#modalVictoria").show()
         $("#reiniciarVictoria").click(function () {
-            location.reload();
+            location.reload()
         });
     }
 
     function mostrarMensajeDerrota() {
-        enJuego = false;
-        clearInterval(cronometro);
+        enJuego = false
+        clearInterval(cronometro)
         reproducirSonido('metal-whistle-6121 (mp3cut.net).mp3');
-        $("#modalDerrota").show();
+        $("#modalDerrota").show()
         $("#reiniciarDerrota").click(function () {
-            location.reload();
+            location.reload()
         });
     }
 
     function mostrarMensajeEmpate() {
-        enJuego = false;
-        clearInterval(cronometro);
+        enJuego = false
+        clearInterval(cronometro)
         reproducirSonido('metal-whistle-6121 (mp3cut.net).mp3');
-        $("#modalEmpate").show();
+        $("#modalEmpate").show()
         $("#reiniciarEmpate").click(function () {
-            location.reload();
+            location.reload()
         });
     }
 
     function reiniciarJuego() {
-        secuenciaJuego = [];
-        secuenciaUsuario = [];
-        enJuego = false;
-        nivel = 0;
-        golesLocal = 0; 
-        golesVisitante = 0;  
-        tiempo = 0;  
+        secuenciaJuego = []
+        secuenciaUsuario = []
+        enJuego = false
+        nivel = 0
+        golesLocal = 0
+        golesVisitante = 0
+        tiempo = 0
         nuevaSecuencia()
     }
 
     function iniciarCronometro() {
       cronometro= setInterval(function () {
-            if (tiempo < 10) {
-                tiempo++;
-                if (tiempo % 10 === 0) {
-                    golesVisitante++;  
-                    $("#goles-visitante").text("- "+golesVisitante);  
+            if (tiempo < 90) {
+                tiempo++
+                if (tiempo % 8 === 0) {
+                    golesVisitante++  
+                    $("#goles-visitante").text("- "+golesVisitante) 
+                    let audio= new Audio('the-sound-where-the-fans-get-upset-because-they-miss-the-goal (mp3cut.net).mp3')
+                    audio.play() 
                 }
-                $("#tiempo").text("Tiempo: " + tiempo + "s");
+                $("#tiempo").text("Tiempo: " + tiempo + "s")
             } else {
-                determinarGanador();
+                determinarGanador()
             }
-        }, 1000);  
+        }, 1000)  
     }
 
     function determinarGanador() {
@@ -151,6 +153,7 @@ $(document).ready(function () {
 
     $("#empezar").click(function () {
         reiniciarJuego()
-        iniciarCronometro();  
-    });
-});
+        iniciarCronometro()  
+    })
+   
+})

@@ -1,10 +1,21 @@
 body{
-    background-image: url(GettyImages-1239441861-scaled.jpg);
+    background-image: url(uefa-champions-league-field-v7chfpp2xl8v843j.jpg);
     background-size: cover;
 background-position: center;
 }
 
+#inicio{
+    position: relative;
+    margin: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgb(0, 0, 0);
+    color: white;
+    font-size: 1.2em;
+    z-index: 1000;
+    position: fixed; /* Para que siempre esté sobre todo */
 
+}
 .equipo {
     display: flex;
     justify-content: center;
@@ -17,7 +28,7 @@ background-position: center;
 .marcador {
     margin: 0;
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente para mejorar la visibilidad */
+    background-color: rgba(0, 0, 0, 0.5); 
     padding: 10px;
     color: white;
     font-size: 1.2em;
@@ -44,6 +55,19 @@ background-position: center;
 #tiempo{
     font-size: 1.2em;
     color: red;
+}
+.equipo img{
+    margin-bottom: 20px;
+}
+#madrid{
+    width: 40px;
+    height: auto;
+    margin-left: 8px;
+    margin-bottom: 28px;
+}
+#celta{
+    width: 35px;
+    height: auto;
 }
 .container{
     margin-top: 30px;
