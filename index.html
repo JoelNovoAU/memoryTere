@@ -12,14 +12,16 @@
 <body>
 <div class="marcador">
     <div id="tiempo">Tiempo: 0s</div>
+<div id="equipos">
     <div class="equipo">
-        <span class="nombre">Equipo Local</span>
-        <span class="goles" id="goles-local">0</span>
+        <p class="nombre">Equipo Local</p>
+        <p class="goles" id="goles-local">0</p>
     </div>
     <div class="equipo">
-        <span class="nombre">Equipo Visitante</span>
-        <span class="goles" id="goles-visitante">0</span>
+        <p class="goles" id="goles-visitante">- 0</p>
+        <p class="nombre2"> Equipo Visitante</p>
     </div>
+</div>
 </div>
 
 
@@ -63,6 +65,16 @@
             <h2>¡EMPATE! </h2>
             <p>Partido ajustado podria ser peor</p>
             <button class="reiniciar" id="reiniciarEmpate">
+                <img src="recarga.png" alt="Reiniciar">
+            </button>
+        </div>
+    </div>
+    <div id="modalDerrota" class="modal-derrota" style="display: none;">
+        <div class="tarjetaDerrota">
+            <img id="imgaspas" src="iago-aspas-celta-de-vigo-laliga_8m2qxqmc9hj31fi8z7nt7e0wd.jpg"  class="tarjeta-roja">
+            <h2>Has perdido </h2>
+            <p>Con mas ganas a la siguiente</p>
+            <button class="reiniciar" id="reiniciarDerrota">
                 <img src="recarga.png" alt="Reiniciar">
             </button>
         </div>

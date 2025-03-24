@@ -3,11 +3,13 @@ $(document).ready(function () {
     let secuenciaUsuario = [];
     let colores = ["celda1", "celda2", "celda3", "celda4"];
     let enJuego = false;
-    let nivel = 0;
     let golesLocal = 0;  
     let golesVisitante = 0;  
     let tiempo = 0;  
     let sonidoActivo = false;  
+    let cronometro;  
+
+
 
     function parpadear(celda) {
         $(`.${celda}`).addClass("active");
@@ -48,7 +50,7 @@ $(document).ready(function () {
     function verificarSecuencia() {
         let index = secuenciaUsuario.length - 1;
         if (secuenciaUsuario[index] !== secuenciaJuego[index]) {
-            mostrarMensajeDerrota();
+            mostrarMensajeRoja();
             return;
         }
         if (secuenciaUsuario.length === secuenciaJuego.length) {
@@ -71,8 +73,19 @@ $(document).ready(function () {
         }
     }
 
+    function mostrarMensajeRoja() {
+        enJuego = false;
+        clearInterval(cronometro);
+        reproducirSonido('metal-whistle-6121 (mp3cut.net).mp3');
+        $("#modalRoja").show();
+        $("#reiniciarRoja").click(function () {
+            location.reload();
+        });
+    }
+
     function mostrarMensajeVictoria() {
         enJuego = false;
+        clearInterval(cronometro); 
         reproducirSonido('metal-whistle-6121 (mp3cut.net).mp3');
         $("#modalVictoria").show();
         $("#reiniciarVictoria").click(function () {
@@ -82,15 +95,17 @@ $(document).ready(function () {
 
     function mostrarMensajeDerrota() {
         enJuego = false;
+        clearInterval(cronometro);
         reproducirSonido('metal-whistle-6121 (mp3cut.net).mp3');
-        $("#modalRoja").show();
-        $("#reiniciarRoja").click(function () {
+        $("#modalDerrota").show();
+        $("#reiniciarDerrota").click(function () {
             location.reload();
         });
     }
 
     function mostrarMensajeEmpate() {
         enJuego = false;
+        clearInterval(cronometro);
         reproducirSonido('metal-whistle-6121 (mp3cut.net).mp3');
         $("#modalEmpate").show();
         $("#reiniciarEmpate").click(function () {
@@ -110,12 +125,12 @@ $(document).ready(function () {
     }
 
     function iniciarCronometro() {
-        setInterval(function () {
+      cronometro= setInterval(function () {
             if (tiempo < 10) {
                 tiempo++;
                 if (tiempo % 10 === 0) {
                     golesVisitante++;  
-                    $("#goles-visitante").text(golesVisitante);  
+                    $("#goles-visitante").text("- "+golesVisitante);  
                 }
                 $("#tiempo").text("Tiempo: " + tiempo + "s");
             } else {
