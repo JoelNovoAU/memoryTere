@@ -10,18 +10,61 @@
 </head>
 
 <body>
-    <div id="nivel">NIVEL 0</div>
+<div class="marcador">
+    <div id="tiempo">Tiempo: 0s</div>
+    <div class="equipo">
+        <span class="nombre">Equipo Local</span>
+        <span class="goles" id="goles-local">0</span>
+    </div>
+    <div class="equipo">
+        <span class="nombre">Equipo Visitante</span>
+        <span class="goles" id="goles-visitante">0</span>
+    </div>
+</div>
+
+
     <div class="container">
         <div class="row">
             <div class="celda celda1"></div>
             <div class="celda celda2"></div>
         </div>
 
-        <button id="empezar" type="submit">SIMON</button>
+        <button id="empezar" type="submit"> JUGAR </button>
 
         <div class="row">
             <div class="celda celda3"></div>
             <div class="celda celda4"></div>
+        </div>
+    </div>
+
+    <div id="modalRoja" class="modal-derrota" style="display: none;">
+        <div class="tarjetaRoja">
+            <img id="imgaspas" src="636156197760150146w.jpg"  class="tarjeta-roja">
+            <h2>¡Tarjeta Roja, EXPULSADO! </h2>
+            <p>No has estado lo suficientemente acertado</p>
+            <button class="reiniciar" id="reiniciarRoja">
+                <img src="recarga.png" alt="Reiniciar">
+            </button>
+        </div>
+    </div>
+    <div id="modalVictoria" class="modal-derrota" style="display: none;">
+        <div class="tarjetaVictoria">
+            <img id="imgaspas" src="f.elconfidencial.com_original_d48_fdd_8f3_d48fdd8f3d37901e9d3a2ac6abd9d198.jpg"  class="tarjeta-roja">
+            <h2>¡VICTORIA! </h2>
+            <p>Has ganado el partido ! FELICIDADES ¡</p>
+            <button class="reiniciar" id="reiniciarVictoria">
+                <img src="recarga.png" alt="Reiniciar">
+            </button>
+        </div>
+    </div>
+    <div id="modalEmpate" class="modal-derrota" style="display: none;">
+        <div class="tarjetaEmpate">
+            <img id="imgaspas" src="1538748122_459460_1538748174_noticia_normal.jpg"  class="tarjeta-roja">
+            <h2>¡EMPATE! </h2>
+            <p>Partido ajustado podria ser peor</p>
+            <button class="reiniciar" id="reiniciarEmpate">
+                <img src="recarga.png" alt="Reiniciar">
+            </button>
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 

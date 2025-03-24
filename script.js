@@ -3,7 +3,11 @@ $(document).ready(function () {
     let secuenciaUsuario = [];
     let colores = ["celda1", "celda2", "celda3", "celda4"];
     let enJuego = false;
-    let nivel=0
+    let nivel = 0;
+    let golesLocal = 0;  
+    let golesVisitante = 0;  
+    let tiempo = 0;  
+    let sonidoActivo = false;  
 
     function parpadear(celda) {
         $(`.${celda}`).addClass("active");
@@ -44,23 +48,94 @@ $(document).ready(function () {
     function verificarSecuencia() {
         let index = secuenciaUsuario.length - 1;
         if (secuenciaUsuario[index] !== secuenciaJuego[index]) {
-            alert("¡ Has Perdido !" );
-            location.reload()
-            reiniciarJuego();
+            mostrarMensajeDerrota();
             return;
         }
         if (secuenciaUsuario.length === secuenciaJuego.length) {
-            nivel++
-            actualizarNivel()
-            setTimeout(nuevaSecuencia, 1000);
+            golesLocal++;
+            $("#goles-local").text(golesLocal); 
+            let acierto = new Audio('spectators-really-enjoy-the-goal (mp3cut.net).mp3');
+            acierto.play();
+            setTimeout(nuevaSecuencia, 1500);
         }
     }
-    function actualizarNivel() {
-        $("#nivel").text("NIVEL " + nivel);
+
+    function reproducirSonido(url) {
+        if (!sonidoActivo) { 
+            let sonido = new Audio(url);
+            sonido.play();
+            sonidoActivo = true;
+            sonido.onended = function() {
+                sonidoActivo = false;  
+            };
+        }
     }
-   
+
+    function mostrarMensajeVictoria() {
+        enJuego = false;
+        reproducirSonido('metal-whistle-6121 (mp3cut.net).mp3');
+        $("#modalVictoria").show();
+        $("#reiniciarVictoria").click(function () {
+            location.reload();
+        });
+    }
+
+    function mostrarMensajeDerrota() {
+        enJuego = false;
+        reproducirSonido('metal-whistle-6121 (mp3cut.net).mp3');
+        $("#modalRoja").show();
+        $("#reiniciarRoja").click(function () {
+            location.reload();
+        });
+    }
+
+    function mostrarMensajeEmpate() {
+        enJuego = false;
+        reproducirSonido('metal-whistle-6121 (mp3cut.net).mp3');
+        $("#modalEmpate").show();
+        $("#reiniciarEmpate").click(function () {
+            location.reload();
+        });
+    }
+
+    function reiniciarJuego() {
+        secuenciaJuego = [];
+        secuenciaUsuario = [];
+        enJuego = false;
+        nivel = 0;
+        golesLocal = 0; 
+        golesVisitante = 0;  
+        tiempo = 0;  
+        nuevaSecuencia()
+    }
+
+    function iniciarCronometro() {
+        setInterval(function () {
+            if (tiempo < 10) {
+                tiempo++;
+                if (tiempo % 10 === 0) {
+                    golesVisitante++;  
+                    $("#goles-visitante").text(golesVisitante);  
+                }
+                $("#tiempo").text("Tiempo: " + tiempo + "s");
+            } else {
+                determinarGanador();
+            }
+        }, 1000);  
+    }
+
+    function determinarGanador() {
+        if (golesLocal > golesVisitante) {
+            mostrarMensajeVictoria()
+        } else if (golesLocal < golesVisitante) {
+            mostrarMensajeDerrota()
+        } else {
+            mostrarMensajeEmpate()
+        }
+    }
 
     $("#empezar").click(function () {
-        nuevaSecuencia();
+        reiniciarJuego()
+        iniciarCronometro();  
     });
 });

@@ -1,15 +1,24 @@
 body{
-    background-color: black;
+    background-image: url(GettyImages-1239441861-scaled.jpg);
+    background-size: cover;
+background-position: center;
 }
-#nivel{
+
+/* Estilo para el marcador */
+.marcador {
+    margin: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente para mejorar la visibilidad */
+    padding: 10px;
     color: white;
-    text-align: center;
-    margin-top: 30px;
-    font-size: 2.5em;
+    font-size: 1.2em;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 100;
 }
 .container{
     margin-top: 70px;
-  
 }
 
 .row{
@@ -60,8 +69,10 @@ body{
     opacity: 1;
 }
 
-button{
-background-color: rgb(0, 0, 0);
+#empezar{
+    font-family: sans-serif;
+    background-position: center;
+background-image: url(images-removebg-preview.png);
 border-radius: 100%;
 height: 180px;
 width: 180px;
@@ -74,8 +85,114 @@ margin: auto;
 text-align: center;
 z-index: 10;
 border: none;
-color: white;
+color: rgb(255, 255, 255);
 font-size: 2.6em;
 cursor: pointer;
+font-weight: bold;
+}
+
+
+.modal-derrota {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.67); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.tarjetaRoja {
+    font-family: condensed;
+    background: white;
+    padding: 20px;
+    width: 400px;
+    text-align: center;
+    border-radius: 15px;
+    box-shadow: 0px 10px 20px rgba(255, 0, 0, 0.7);
+    position: relative;
+    border: 4px solid red;
+    color: red;
+}
+
+
+.tarjetaVictoria {
+    font-family: condensed;
+    background: white;
+    padding: 20px;
+    width: 400px;
+    text-align: center;
+    border-radius: 15px;
+    box-shadow: 0px 10px 20px rgba(98, 255, 0, 0.7);
+    position: relative;
+    border: 4px solid rgba(98, 255, 0, 0.7);
+    color: green;
+}
+.tarjetaEmpate {
+    font-family: condensed;
+    background: white;
+    padding: 20px;
+    width: 400px;
+    text-align: center;
+    border-radius: 15px;
+    box-shadow: 0px 10px 20px r rgba(0, 60, 255, 0.703);
+    position: relative;
+    border: 4px solid rgb(0, 60, 255);
+    color: rgb(0, 60, 255) ;
+}
+
+#imgaspas{
+    width: 220px;
+    height: auto;
+    margin-bottom: 15px;
+    filter: drop-shadow(5px 5px 10px rgba(255, 0, 0, 0.5));
+}
+
+.tarjeta h2 {
+    font-size: 26px;
+    color: #d50000;
+    font-weight: bold;
+}
+
+
+.reiniciar {
+    background: none; 
+    border: none; 
+    cursor: pointer; 
+    margin-top: 10px; 
+}
+
+.reiniciar img {
+    width: 50px; 
+    height: auto;
+}
+
+.reiniciar:hover {
+    transform: scale(1.1); 
+}
+
+.marcador {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 24px;
+}
+
+.equipo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nombre {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.goles {
+    font-size: 32px;
+    color: green;
 }
 
