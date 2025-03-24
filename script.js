@@ -9,7 +9,6 @@ $(document).ready(function () {
     let sonidoActivo = false  
     let cronometro  
 
-    
 
     function parpadear(celda) {
         $(`.${celda}`).addClass("active")
@@ -126,7 +125,7 @@ $(document).ready(function () {
 
     function iniciarCronometro() {
       cronometro= setInterval(function () {
-            if (tiempo < 90) {
+            if (tiempo < 20) {
                 tiempo++
                 if (tiempo % 8 === 0) {
                     golesVisitante++  
